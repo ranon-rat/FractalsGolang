@@ -6,4 +6,5 @@ the fractal you are seeing is based on a mandelbrot set which is quite an intere
 </h4>
 <h4>
 If you want to find more information you can go to <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">wikipedia</a></h4>
+<h1>my own fractal<h1>
 <img src="image/fractal.png">
