@@ -20,7 +20,7 @@ func scale(in, inMin, inMax int, outMin, outMax float64) float64 {
 	var out float64 = n*(outMax-outMin) + outMin
 	return out
 }
-func fractal(img *image.NRGBA) {
+func fractal(img *image.NRGBA, ale float64) {
 
 	for px := 0; px < width; px++ {
 		for py := 0; py < height; py++ {
@@ -29,11 +29,11 @@ func fractal(img *image.NRGBA) {
 			var z complex128 = 0 + 0i
 			var i int = 0
 			for cmplx.Abs(cmplx.Conj(z)) < 2*4 && i < maxIteration {
-				z = cmplx.Sqrt(cmplx.Sinh((z*z*z*z)*math.E/math.Phi)+math.Pi/c) / 2
+				z = (cmplx.Sqrt(cmplx.Sinh((z*z*z*z)*math.E)/math.Pi) + cmplx.Sin(c)) * complex(ale, 0)
 				i++
 			}
 			img.Set(px, py, color.NRGBA{
-				R: uint8(i % 8 * 32), G: uint8(i % 64 * 64), B: uint8(i % 16 * 16), A: 255,
+				R: uint8(i % 64 * 64), G: uint8(i % 8 * 32), B: uint8(i % 64 * 64), A: 255,
 			})
 		}
 	}
@@ -41,9 +41,18 @@ func fractal(img *image.NRGBA) {
 
 func main() {
 	var img *image.NRGBA = image.NewNRGBA(image.Rect(0, 0, width, height))
-	fractal(img)
-	f, _ := os.Create("../image/fractal.png")
-	defer f.Close()
-	png.Encode(f, img)
-
+	var img2 *image.NRGBA = image.NewNRGBA(image.Rect(0, 0, width, height))
+	var img3 *image.NRGBA = image.NewNRGBA(image.Rect(0, 0, width, height))
+	fractal(img, 1)
+	f1, _ := os.Create("../image/fractalx1.png")
+	defer f1.Close()
+	png.Encode(f1, img)
+	f2, _ := os.Create("../image/fractalx2.png")
+	defer f2.Close()
+	fractal(img2, 2)
+	png.Encode(f2, img2)
+	f3, _ := os.Create("../image/fractalx3.png")
+	defer f3.Close()
+	fractal(img3, 3)
+	png.Encode(f3, img3)
 }
