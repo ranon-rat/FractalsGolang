@@ -1,1 +1,2 @@
-<h1>fractal<h1>
+<h1>Fractal<h1>
+<img src="image/fractal.png">
