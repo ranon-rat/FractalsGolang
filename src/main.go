@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	width        int = 2000
-	height       int = 1000
+	width        int = 3000
+	height       int = 1500
 	maxIteration int = 80
 )
 
@@ -28,7 +28,7 @@ func fractal(img *image.NRGBA) {
 			var z complex128 = 0 + 0i
 			var i int = 0
 			for cmplx.Abs(cmplx.Conj(z)) < 2*4 && i < maxIteration {
-				z = cmplx.Sqrt(cmplx.Sinh(z*z*z*z)) + c
+				z = (cmplx.Sqrt(cmplx.Sinh(z*z*z*z)) + c) * 2
 				i++
 			}
 			img.Set(px, py, color.NRGBA{
