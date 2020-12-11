@@ -4,14 +4,15 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"math"
 	"math/cmplx"
 	"os"
 )
 
 const (
-	width        int = 3000
-	height       int = 1500
-	maxIteration int = 80
+	width        int = 2000
+	height       int = 1000
+	maxIteration int = 180
 )
 
 func scale(in, inMin, inMax int, outMin, outMax float64) float64 {
@@ -28,11 +29,11 @@ func fractal(img *image.NRGBA) {
 			var z complex128 = 0 + 0i
 			var i int = 0
 			for cmplx.Abs(cmplx.Conj(z)) < 2*4 && i < maxIteration {
-				z = (cmplx.Sqrt(cmplx.Sinh(z*z*z*z)) + c) * 2
+				z = cmplx.Sqrt(cmplx.Sinh((z*z*z*z)*math.E/math.Phi)+math.Pi/c) / 2
 				i++
 			}
 			img.Set(px, py, color.NRGBA{
-				R: uint8(i % 16 * 16), G: uint8(i % 8 * 32), B: uint8(i % 4 * 64), A: 255,
+				R: uint8(i % 8 * 32), G: uint8(i % 64 * 64), B: uint8(i % 16 * 16), A: 255,
 			})
 		}
 	}
