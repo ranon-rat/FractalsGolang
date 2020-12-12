@@ -5,6 +5,6 @@ the fractal you are seeing is based on a mandelbrot set which is quite an intere
 If you want to find more information you can go to <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">wikipedia</a></h4>
 <h1>my own fractal<h1>
   
-| x1 zoom                         | x2 zoom                         |                         x3 zoom |
+| x3 zoom                         | x2 zoom                         |                         x1 zoom |
 |---------------------------------|---------------------------------|---------------------------------|
 | <img src="image/fractalx1.png"> | <img src="image/fractalx2.png"> | <img src="image/fractalx3.png"> |
